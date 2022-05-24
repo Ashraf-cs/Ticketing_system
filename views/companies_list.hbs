@@ -15,7 +15,7 @@
                         <p id="addCompMsg" class="text-danger text-center"></p>
                         <form onsubmit="preventSubmit(event)">
                             <label for="name" class="form-label mt-2 mb-1">name</label>
-                            <input id="addCompName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9]+" title="Only characters, numbers and underscores" required />
+                            <input id="addCompName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9-]+" title="Only characters, numbers and underscores" required />
                             <div class="d-flex justify-content-end mt-3">
                                 <input type="submit" value="Add" class="btn btn-sm btn-primary" onclick="addCompany(event)" />
                             </div>

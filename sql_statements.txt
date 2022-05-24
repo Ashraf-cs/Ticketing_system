@@ -1,0 +1,88 @@
+CREATE DATABASE ticketsystem2;
+USE ticketsystem2;
+CREATE TABLE technicians (
+username varchar(30) NOT NULL,
+name varchar(30) NOT NULL,
+password varchar(128) NOT NULL,
+company varchar(128) NOT NULL,
+role enum('user','admin','super') NOT NULL,
+status enum('active','disabled','deleted') NOT NULL DEFAULT 'active',
+created_at timestamp NOT NULL,
+PRIMARY KEY (username)
+);
+CREATE TABLE technicians_updates (
+id int(11) NOT NULL AUTO_INCREMENT,
+technician varchar(30) NOT NULL,
+update_type enum('name','company','role','status') NOT NULL,
+update_value varchar(128) NOT NULL,
+updated_by varchar(30) NOT NULL,
+updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+FOREIGN KEY (technician) REFERENCES technicians (username),
+FOREIGN KEY (updated_by) REFERENCES technicians (username)
+);
+CREATE TABLE companies (
+name varchar(30) NOT NULL,
+status enum('active','disabled','deleted') NOT NULL,
+PRIMARY KEY (name)
+);
+CREATE TABLE companies_updates (
+id int(11) NOT NULL AUTO_INCREMENT,
+company varchar(30) NOT NULL,
+update_type enum('status') NOT NULL,
+update_value enum('active','disabled','deleted') NOT NULL,
+updated_by varchar(30) NOT NULL,
+updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+FOREIGN KEY (company) REFERENCES companies (name),
+FOREIGN KEY (updated_by) REFERENCES technicians (username)
+);
+CREATE TABLE employees (
+username varchar(30) NOT NULL,
+name varchar(30) NOT NULL,
+password varchar(128) NOT NULL,
+company varchar(128) NOT NULL,
+status enum('active','disabled','deleted') NOT NULL DEFAULT 'active',
+created_at timestamp NOT NULL,
+PRIMARY KEY (username)
+);
+CREATE TABLE employees_updates (
+id int(11) NOT NULL AUTO_INCREMENT,
+employee varchar(30) NOT NULL,
+update_type enum('name','company','status') NOT NULL,
+update_value varchar(128) NOT NULL,
+updated_by varchar(30) NOT NULL,
+updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+FOREIGN KEY (employee) REFERENCES employees (username),
+FOREIGN KEY (updated_by) REFERENCES technicians (username)
+);
+CREATE TABLE tickets (
+id int(11) NOT NULL AUTO_INCREMENT,
+created_at timestamp NOT NULL,
+technician varchar(30) NOT NULL,
+employee varchar(30) NOT NULL,
+phone varchar(10) NOT NULL,
+company varchar(30) NOT NULL,
+category varchar(20) NOT NULL,
+description varchar(500) NOT NULL,
+status enum('open','closed') NOT NULL,
+comment varchar(500) NOT NULL,
+closed_at timestamp NULL DEFAULT NULL,
+closed_by varchar(30) NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (technician) REFERENCES technicians (username),
+FOREIGN KEY (employee) REFERENCES employees (username)
+);
+CREATE TABLE tickets_updates (
+id int(11) NOT NULL AUTO_INCREMENT,
+ticket_id int(11) NOT NULL,
+update_type enum('technician','status','comment','closed_by') NOT NULL,
+update_value varchar(30) NOT NULL,
+updated_by varchar(30) NOT NULL,
+updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+FOREIGN KEY (ticket_id) REFERENCES tickets (id),
+FOREIGN KEY (updated_by) REFERENCES technicians (username)
+);
+
