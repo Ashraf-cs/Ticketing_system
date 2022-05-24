@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser")
 const path = require("path")
 
 const app = express()
-const port = 3100
+const port = process.env.PORT || 3100
 
 app.set("view engine", "hbs")
 app.set("views", "./views")
