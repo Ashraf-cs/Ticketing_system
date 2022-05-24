@@ -1,0 +1,11 @@
+<div class="container w-50 mt-5 pt-3">
+    <h4 class="text-center mb-4">Employees login</h4>
+    <p class="text-danger"> {{ message }} </p>
+    <form method="post" action="/login/employees">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" required class="form-control"/>
+        <label for="password" class="form-label mt-2">Password</label>
+        <input type="password" name="password" required class="form-control"/>
+        <input type="submit" value="Login" class="btn btn-sm btn-primary mt-3"/>
+    </form>
+</div>

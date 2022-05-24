@@ -1,0 +1,55 @@
+<script src="/admin.js" onload="getEmployees()"></script>
+<div class="container mt-4">
+    <a href="/technicians/home" class="text-decoration-none fs-6">← Back to home</a><hr class="mt-2"/>
+    <h4 class="mt-4">Employees</h4>
+    <div class="mt-5">
+        <button class="btn btn-sm btn-primary " data-bs-toggle="modal" data-bs-target="#addEmployees">Add employee</button>
+        <div class="modal fade" id="addEmployees">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="height: 45px">
+                        <h4 class="modal-title">Add employee</h4>
+                        <button id="add-emp-close" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="addEmpMsg" class="text-danger text-center"></p>
+                        <form onsubmit="preventSubmit(event)">
+                            <label for="username" class="form-label mb-1">Username</label>
+                            <input id="addEmpUsername" name="username" type="text"  class="form-control form-control-sm" pattern="[A-z0-9]+" title="Only characters, numbers and underscores" required />
+                            <label for="name" class="form-label mt-2 mb-1">name</label>
+                            <input id="addEmpName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9 ]+" title="Only characters, numbers and underscores" required />
+                            <label for="company" class="form-label mt-2 mb-1">Company</label>
+                            <select id="addEmpCompany" name="company" class="form-select form-select-sm" required>
+                                <option selected disabled></option>
+                                {{#each companies}}
+                                    <option value={{name}}>{{name}}</option>
+                                {{/each}}
+                            </select>
+                            <div class="d-flex justify-content-end mt-3">
+                                <input type="submit" value="Add" class="btn btn-sm btn-primary" onclick="addEmployee(event)" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 320px; overflow: auto">
+            <table class="table table-light table-striped table-hover text-center mt-4" >
+                <thead class="sticky-top">
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                        <th>Company</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="employeesList">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

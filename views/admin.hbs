@@ -1,0 +1,165 @@
+<script src="/admin.js" onload="getTickets()"></script>
+<div class="container-xxl mt-3">
+    
+    <h5 id="ticketsOf" class="d-inline"></h5> 
+    (<a href="tickets_list">Show all</a>)
+    <div class="mt-4 card p-2 borer border-secondary">
+        <div class="row">
+            <div class="col">
+                <div class="card text-center fs-4 p-2">
+                    <p>Tickets</p>
+                    <span id="ticketsTotal"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center fs-4 p-2">
+                    <p>Opened tickets</p>
+                    <span id="openedTicketsTotal"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center fs-4 p-2">
+                    <p>Closed tickets</p>
+                    <span id="closedTicketsTotal"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="mt-3">
+        
+        <div class="mt-1" style=" height: 100%; overflow: auto">
+            <table class="table table-light table-striped table-hover text-center" >
+                <thead class="sticky-top">
+                    <tr>
+                        <th>Number</th>
+                        <th>Created at</th>
+                        <th>Technician</th>
+                        <th>Company</th>
+                        <th>Employee</th>
+                        <th>Phone</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>closed at</th>
+                        <th>Closed By</th>
+                        <th>Comment</th>
+                        <th></th>
+                    </tr>
+
+                    {{!-- Filter fields --}}
+                    <tr>
+                        <th>
+                            <input type="search" class="form-control form-control-sm" oninput="filterTickets('id',event.target.value)" />
+                        </th>
+                        <th>
+                            <input type="date" class="form-control form-control-sm" oninput="filterTickets('created_at',event.target.value)" />
+                        </th>
+                        
+                        <th>
+                            <input type="search" class="form-control form-control-sm" oninput="filterTickets('technician',event.target.value)" />
+                        </th>
+                        <th>
+                            <select onchange="filterTickets('company',event.target.value)" class="form-select form-select-sm">
+                                <option value="">All</option>
+                                {{#each companies}}
+                                        <option value={{name}}>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </th>
+                        <th>
+                            <input type="search" class="form-control form-control-sm" oninput="filterTickets('employee',event.target.value)" />
+                        </th>
+                        <th></th>
+                        <th>
+                            <select onchange="filterTickets('category',event.target.value)" class="form-select form-select-sm">
+                                <option value="">All</option>
+                                <option value="devices">Devices</option>
+                                <option value="network">Network</option>
+                                <option value="printers">Printers</option>
+                            </select>
+                        </th>
+                        <th></th>
+                        <th>
+                            <select onchange="filterTickets('status',event.target.value)" class="form-select form-select-sm">
+                                <option value="">All</option>
+                                <option value="open">Open</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </th>
+                        <th>
+                            <input type="date" class="form-control form-control-sm" oninput="filterTickets('closed_at',event.target.value)" />
+                        </th>
+                        <th>
+                            <input type="search" class="form-control form-control-sm" oninput="filterTickets('closed_by',event.target.value)" />
+                        </th>
+                        <th></th>
+                        <th class="px-0">
+                            <button class="btn btn-sm btn-warning mx-0" data-bs-toggle="collapse" data-bs-target="#customFilter">Custom</button>
+                        </th>
+                        
+                    </tr>
+                </thead>
+
+                {{!-- Custom filter fields --}}
+                <thead class="collapse" id="customFilter">
+                    <tr >
+                        <form>
+                            <th></th>
+                            <th>
+                                <input id="cfilterCreatedAt" type="date" class="form-control form-control-sm" />
+                            </th>
+                            <th>
+                                <input id="cfilterTechnician" type="search" class="form-control form-control-sm" />
+                            </th>
+                            <th>
+                                <select id="cfilterCompany" class="form-select form-select-sm">
+                                    <option value="">All</option>
+                                    {{#each companies}}
+                                            <option value={{name}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </th>
+                            <th>
+                                <input id="cfilterEmployee" type="search" class="form-control form-control-sm"/>
+                            </th>
+                            <th></th>
+                            <th>
+                                <select id="cfilterCategory" class="form-select form-select-sm">
+                                    <option value="">All</option>
+                                    <option value="devices">Devices</option>
+                                    <option value="network">Network</option>
+                                    <option value="printers">Printers</option>
+                                </select>
+                            </th>
+                            <th></th>
+                            <th>
+                                <select id="cfilterStatus" class="form-select form-select-sm">
+                                    <option value="">All</option>
+                                    <option value="open">Open</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </th>
+                            <th>
+                                <input id="cfilterClosedAt" type="date" class="form-control form-control-sm"/>
+                            </th>
+                            <th>
+                                <input id="cfilterClosedBy" type="search" class="form-control form-control-sm" />
+                            </th>
+                            <th>
+                                <button type="button" onclick="customFilterTickets()" class="btn btn-sm btn-success">Filter</button>
+                            </th>
+                            <th>
+                                <button type="reset" onclick="representTickets(content)" class="btn btn-sm btn-secondary">Reset</button>
+                            </th>
+                        </form>
+                    </tr>
+                </thead>
+                <tbody id="ticketsList" >
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

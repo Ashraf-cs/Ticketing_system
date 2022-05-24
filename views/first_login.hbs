@@ -1,0 +1,25 @@
+<div class="container w-50 mt-5 pt-3">
+    <h4 class="text-center mb-4">Assign your password</h4>
+    <form method="post" action="/login/first" onsubmit="validate(event)">
+        <input type="text" name="catg" value={{catg}} hidden />
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" value={{username}} class="form-control" readonly/>
+        <label for="password" class="form-label mt-2">Password</label>
+        <input id="password" name="password" type="password" class="form-control" minlength="3" required/>
+        <label for="repassword" class="form-label mt-2">Re-type Password</label>
+        <input id="repassword" name="repassword" type="password"  class="form-control" minlength="3" required/>
+        <p id="passwordMsg" class="text-danger"></p>
+        <input type="submit" value="Submit" class="btn btn-sm btn-primary mt-3"/>
+    </form>
+</div>
+<script>
+    function validate(event){
+        let password = document.getElementById("password").value
+        let repassword = document.getElementById("repassword").value
+        
+        if(password != repassword){
+            event.preventDefault()
+            document.getElementById("passwordMsg").innerHTML = "Passwords are not matched"
+        }
+    }
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <link href="/bootstrap.css" rel="stylesheet" />
+            <script src="/bootstrap.js"></script>
+        </head>
+        <body>
+            <ul class="nav bg-dark text-light pt-3 ps-2 pe-4 d-flex justify-content-between" style="height: 60px">
+                <li class="nav-item">
+                    <h4>Ticket system</h4>
+                </li>
+                <li id="adminNavbar">
+
+                </li>
+
+                {{#if name}}
+                    <li class="nav-item">
+                    <span class="me-1 fw-bold">{{name}}</span>
+                    <form class="d-inline" method="post" action="/login/logout">
+                        <input type="submit" value="Log out" class="btn btn-sm btn-warning fw-bold"/>
+                    </form>
+                    </li>
+                {{/if}}
+            </ul>
+
+            {{{body}}}
+        </body>
+    </html>
