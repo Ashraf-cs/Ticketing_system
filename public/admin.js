@@ -470,9 +470,10 @@ function filterTickets(field, value){
 // Fileter tickets based on multiple parameter all at once
 function customFilterTickets(){
     let filtered = {technicians: tickets.technicians, tickets: []}
-    let created_at_from = document.getElementById("cfilterCreatedAt1").value + " 00:00:00"
-    let created_at_to = document.getElementById("cfilterCreatedAt2").value + " 23:59:59"
-    let closed_at = document.getElementById("cfilterClosedAt").value
+    let created_at_from = document.getElementById("cfilterCreatedAtFrom").value + " 00:00:00"
+    let created_at_to = document.getElementById("cfilterCreatedAtTo").value + " 23:59:59"
+    let closed_at_from = document.getElementById("cfilterClosedAtFrom").value + " 00:00:00"
+    let closed_at_to = document.getElementById("cfilterClosedAtTo").value + " 23:59:59"
     let technician = document.getElementById("cfilterTechnician").value
     let company = document.getElementById("cfilterCompany").value
     let employee = document.getElementById("cfilterEmployee").value
@@ -485,17 +486,11 @@ function customFilterTickets(){
     if(tickets.tickets){
         (tickets.tickets).forEach((ticket) => {
             if(
-
                 String(ticket["created_at"]) >= created_at_from && String(ticket["created_at"]) <= created_at_to
-                && String(ticket["closed_at"]).search(closed_at) != -1 &&
-                String(ticket["technician"]).search(technician) != -1 && String(ticket["company"]).search(company) != -1 && 
+                && String(ticket["closed_at"]).search(closed_at_from) != -1 && String(ticket["closed_at"]).search(closed_at_to) != -1
+                && String(ticket["technician"]).search(technician) != -1 && String(ticket["company"]).search(company) != -1 && 
                 String(ticket["employee"]).search(employee) != -1 && String(ticket["category"]).search(category) != -1 && 
                 String(ticket["status"]).search(status) != -1 && String(ticket["closed_by"]).search(closed_by) != -1
-
-                // String(ticket["created_at"]).search(created_at_from) != -1 && String(ticket["closed_at"]).search(closed_at) != -1 &&
-                // String(ticket["technician"]).search(technician) != -1 && String(ticket["company"]).search(company) != -1 && 
-                // String(ticket["employee"]).search(employee) != -1 && String(ticket["category"]).search(category) != -1 && 
-                // String(ticket["status"]).search(status) != -1 && String(ticket["closed_by"]).search(closed_by) != -1
             ){
 
                 filtered.tickets.push(ticket)
@@ -514,6 +509,26 @@ function customFilterTickets(){
         document.getElementById("closedTicketsTotal").innerHTML = closedTickets
         representTickets(filtered)
     }
+}
+
+
+function getTicketReport(){
+    let date = new Date()
+    let created_at_from = (document.getElementById("cfilterCreatedAtFrom").value) ? (document.getElementById("cfilterCreatedAtFrom").value) + " 00:00:00" : `${date.getFullYear()}-${date.getMonth()+1}-1 00:00:00`
+    let created_at_to = (document.getElementById("cfilterCreatedAtTo").value) ? document.getElementById("cfilterCreatedAtTo").value + " 23:59:59" : `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 23:59:59`
+    let closed_at_from = (document.getElementById("cfilterClosedAtFrom").value) ? document.getElementById("cfilterClosedAtFrom").value : created_at_from
+    let closed_at_to = (document.getElementById("cfilterClosedAtTo").value) ? document.getElementById("cfilterClosedAtFrom").value : `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 23:59:59`
+    let technician = document.getElementById("cfilterTechnician").value
+    let company = document.getElementById("cfilterCompany").value
+    let employee = document.getElementById("cfilterEmployee").value
+    let category = document.getElementById("cfilterCategory").value
+    let status = document.getElementById("cfilterStatus").value
+    let closed_by = document.getElementById("cfilterClosedBy").value
+
+    fetch("/tickets/report", {"method": "POST", "headers": {"content-Type": "application/x-www-form-urlencoded"},
+        "body": `create_date1=${created_at_from}&create_date2=${created_at_to}&close_date1=${closed_at_from}&close_date2=${closed_at_to}&technician=${technician}&company=${company}&employee=${employee}&category=${category}&status=${status}&closed_by=${closed_by}`})
+    .then(res => res.json())
+    .then(data => document.getElementById("reportFrame").srcdoc = data)
 }
 
 

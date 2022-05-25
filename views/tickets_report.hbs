@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="/bootstrap.css" rel="stylesheet" />
+            <title>TicketsReport_from{{date1}}_to{{date2}}</title>
+    </head>
+    <body onload="window.print()">
+        <div class="container-xxl mt-3">
+    <h5 class="">Tickets from {{date1}} to {{date2}}</h5> 
+    <div class="mt-4 card p-2">
+        <div class="row">
+            <div class="col">
+                <div class="card text-center fs-4 p-2 border border-dark">
+                    <p>Tickets</p>
+                    <span>{{allTotal}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center fs-4 p-2 border border-dark">
+                    <p>Opened tickets</p>
+                    <span>{{openedTotal}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center fs-4 p-2 border border-dark">
+                    <p>Closed tickets</p>
+                    <span>{{closedTotal}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="mt-3">
+        
+        <div class="mt-1" style=" height: 100%; overflow: auto">
+            <table class="table table-light table-striped table-hover text-center" >
+                <thead class="sticky-top">
+                    <tr>
+                        <th>Number</th>
+                        <th>Created at</th>
+                        <th>Technician</th>
+                        <th>Company</th>
+                        <th>Employee</th>
+                        <th>Phone</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>closed at</th>
+                        <th>Closed By</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ticketsList" >
+                    {{#each tickets}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{created_at}}</td>
+                            <td>{{technician}}</td>
+                            <td>{{company}}</td>
+                            <td>{{employee}}</td>
+                            <td>{{phone}}</td>
+                            <td>{{category}}</td>
+                            <td>{{status}}</td>
+                            <td>{{closed_at}}</td>
+                            <td>{{closed_by}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    </body>
+</html>

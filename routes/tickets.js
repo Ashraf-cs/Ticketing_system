@@ -60,7 +60,6 @@ router.get("/tickets_all", (req, res) => {
     jwt.verify(req.cookies.token, process.env.secret, (err, result) => {
         if(result && result.catg == "technicians"){
             if(result.role == "super"){
-                console.log(req.query.year)
                 let year = (req.query.year) ? req.query.year : date.getFullYear()
                 pool.query(`SELECT *, date_format(created_at, "%Y-%m-%d %H:%i:%s") AS created_at,
                     date_format(closed_at, "%Y-%m-%d %H:%i:%s") AS closed_at 
@@ -77,6 +76,48 @@ router.get("/tickets_all", (req, res) => {
 
                         })
                     })
+                })  
+            }
+        }else if(result && result.catg != "technicians"){
+            res.end()
+        }else{
+            res.end()
+        }
+    })
+})
+
+router.post("/report", (req, res) => {
+    let date = new Date()
+    console.log(req.body)
+    jwt.verify(req.cookies.token, process.env.secret, (err, result) => {
+        if(result && result.catg == "technicians"){
+            if(result.role == "super"){
+                
+                pool.query(`SELECT *, date_format(created_at, "%Y-%m-%d %H:%i:%s") AS created_at,
+                    date_format(closed_at, "%Y-%m-%d %H:%i:%s") AS closed_at 
+                    FROM tickets WHERE closed_at >= "${req.body['close_date1']}" AND closed_at <= "${req.body['close_date2']}"
+                    OR closed_at IS NULL AND created_at >= "${req.body['create_date1']}" AND created_at <= "${req.body['create_date2']}"
+                    AND technician LIKE "%${req.body.technician}%" AND employee LIKE "%${req.body.employee}%" AND company LIKE "%${req.body.company}%" 
+                    AND technician LIKE "%${req.body.category}%" AND status LIKE "%${req.body.status}%" 
+                    AND closed_by LIKE "%${req.body['closed_by']}%"`, (err, tickets) => {
+                    if(err) console.log(err)
+                    
+                    console.log(tickets)
+                    let openedTickets = 0
+                    let closedTickets = 0
+                    tickets.forEach((ticket) => {
+                        if(ticket.status == "open"){
+                            openedTickets += 1
+                        }else{
+                            closedTickets += 1
+                        }
+                    })
+                    res.render("tickets_report", {layout: null, date1: req.body['create_date1'].slice(0,9), date2: req.body['create_date2'].slice(0,9), 
+                        allTotal: tickets.length, openedTotal: openedTickets, closedTotal: closedTickets, tickets: tickets }, (err, html) => {
+                            if(err) console.log(err)
+
+                            res.json(html)
+                        })
                 })  
             }
         }else if(result && result.catg != "technicians"){
