@@ -997,7 +997,7 @@ function getCompanies(){
                 }
             })
 
-            document.getElementById("companiesList").innerHTML += node
+            document.getElementById("companiesList").innerHTML = node
         }
     })
 }

@@ -26,7 +26,7 @@ router.get("/home", (req, res) => {
                     res.cookie("token", token).render("technicians", {name: result.username})
                     
                 }else if(result.role == "super" || result.role == "admin"){
-                    pool.query("SELECT name FROM companies", (err, companies) => {
+                    pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
 
                         res.cookie("token", token).render("admin", {name: result.username, companies: companies})
@@ -54,7 +54,7 @@ router.get("/tickets_list", (req, res) => {
                     res.cookie("token", token).render("technicians", {name: result.username})
                     
                 }else if(result.role == "super" || result.role == "admin"){
-                    pool.query("SELECT name FROM companies", (err, companies) => {
+                    pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         res.cookie("token", token).render("tickets_list", {name: result.username, companies: companies})
                     })
                 }  
@@ -77,7 +77,7 @@ router.get("/technicians_list", (req, res) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 15)}, process.env.secret, (err, token) => {
 
                 if(result.role == "super" || result.role == "admin"){
-                    pool.query("SELECT name FROM companies", (err, companies) => {
+                    pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
                         
                         res.cookie("token", token).render("technicians_list", {name: result.username, companies: companies})
@@ -103,7 +103,7 @@ router.get("/employees_list", (req, res) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 15)}, process.env.secret, (err, token) => {
 
                 if(result.role == "super" || result.role == "admin"){
-                    pool.query("SELECT name FROM companies", (err, companies) => {
+                    pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
                         
                         res.cookie("token", token).render("employees_list", {name: result.username, companies: companies})
@@ -154,7 +154,7 @@ router.get("/get", (req, res) => {
                     WHERE role != "super" and status != "deleted"`, (err, technicians) => {
                     if(err) console.log(err)
     
-                    pool.query("SELECT name FROM companies", (err, companies) => {
+                    pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
 
                         res.json({status: true, technicians: technicians ,companies: companies})
@@ -210,7 +210,7 @@ router.post("/", (req, res) => {
                         pool.query(`SELECT * FROM technicians WHERE username = "${req.body.username}"`, (err, technician) => {
                             if(err) console.log(err)
                                 
-                            pool.query(`SELECT name FROM companies`, (err, companies) => {
+                            pool.query(`SELECT name FROM companies WHERE status = 'active'`, (err, companies) => {
                                 if(err) console.log(err)
                                 technician[0]["companies"] = companies
                 
