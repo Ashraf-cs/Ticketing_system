@@ -1,28 +1,53 @@
 <!DOCTYPE html>
     <html>
         <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link href="/bootstrap.css" rel="stylesheet" />
             <script src="/bootstrap.js"></script>
         </head>
         <body>
-            <ul class="nav bg-dark text-light pt-3 ps-2 pe-4 d-flex justify-content-between" style="height: 60px">
-                <li class="nav-item">
-                    <h4>Ticket system</h4>
-                </li>
-                <li id="adminNavbar">
-
-                </li>
-
-                {{#if name}}
-                    <li class="nav-item">
-                    <span class="me-1 fw-bold">{{name}}</span>
-                    <form class="d-inline" method="post" action="/login/logout">
-                        <input type="submit" value="Log out" class="btn btn-sm btn-warning fw-bold"/>
-                    </form>
-                    </li>
-                {{/if}}
-            </ul>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+                <div class="container-fluid">
+                    <h4 class="me-5 pe-5">Ticket system</h4>
+                    {{#if name}}
+                        {{#if admin}}
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                
+                                    <ul class="navbar-nav d-flex justify-content-center mb-lg-0 w-75">
+                                        <li class="nav-item"><a class="nav-link text-light pe-2" href="technicians_list">Technicians</a></li>
+                                        <li class="nav-item"><a class="nav-link text-light pe-2" href="employees_list">Employees</a></li>
+                                        <li class="nav-item"><a class="nav-link text-light pe-2" href="companies_list">Companies</a></li>
+                                        
+                                    </ul>
+                                <ul class="navbar-nav d-flex justify-content-end mb-lg-0 pt-1 w-25">
+                                        <li class="nav-item">
+                                            <span class="me-1 fw-bold">{{name}}</span>
+                                            <form class="d-inline" method="post" action="/login/logout">
+                                                <input type="submit" value="Log out" class="btn btn-sm btn-warning fw-bold"/>
+                                            </form>
+                                        </li>
+                                    </ul>
+                            </div>
+                        {{else}}
+                            <ul class="navbar-nav d-flex justify-content-end mb-lg-0 pt-1">
+                                <li class="nav-item">
+                                    <span class="me-1 fw-bold">{{name}}</span>
+                                    <form class="d-inline" method="post" action="/login/logout">
+                                        <input type="submit" value="Log out" class="btn btn-sm btn-warning fw-bold"/>
+                                    </form>
+                                </li>
+                            </ul>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </nav>
+            
 
             {{{body}}}
+
         </body>
     </html>

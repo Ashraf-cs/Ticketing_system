@@ -1,8 +1,10 @@
 <script src="/admin.js" onload="getTicketsAll()"></script>
 <div class="container-xxl mt-3">
     <a href="/technicians/home" class="text-decoration-none fs-6 d-block">← Back to home</a>
-    <h5 id="ticketsOf" class="d-inline"></h5> 
-    <select id="ticketsYears" onchange="getTicketsAllSpecific(event.target.value)">
+    <div class="mt-3">
+        <h5 id="ticketsOf" class="d-inline"></h5> 
+        <select id="ticketsYears" onchange="getTicketsAllSpecific(event.target.value)">
+    </div>
         
     </select>
     <div class="mt-4 card p-2 borer border-secondary">

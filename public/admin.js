@@ -1,13 +1,6 @@
 // Save retrieved ticket to this variable
 let tickets = ""
 
-// Add additional elements to admin's navbar
-document.getElementById("adminNavbar").innerHTML = 
-    `
-    <a class="text-decoration-none text-light fw-bold pe-2" href="technicians_list">Technicians</a>
-    <a class="text-decoration-none text-light fw-bold pe-2" href="employees_list">Employees</a>
-    <a class="text-decoration-none text-light fw-bold pe-2" href="companies_list">Companies</a>
-    `
 
 // Prevent forms to be submitted
 function preventSubmit(event){

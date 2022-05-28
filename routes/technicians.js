@@ -29,7 +29,7 @@ router.get("/home", (req, res) => {
                     pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
 
-                        res.cookie("token", token).render("admin", {name: result.username, companies: companies})
+                        res.cookie("token", token).render("admin", {admin:true, name: result.username, companies: companies})
                     })
                 }
             })
@@ -55,7 +55,7 @@ router.get("/tickets_list", (req, res) => {
                     
                 }else if(result.role == "super" || result.role == "admin"){
                     pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
-                        res.cookie("token", token).render("tickets_list", {name: result.username, companies: companies})
+                        res.cookie("token", token).render("tickets_list", {admin:true, name: result.username, companies: companies})
                     })
                 }  
             })
@@ -80,7 +80,7 @@ router.get("/technicians_list", (req, res) => {
                     pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
                         
-                        res.cookie("token", token).render("technicians_list", {name: result.username, companies: companies})
+                        res.cookie("token", token).render("technicians_list", {admin:true, name: result.username, companies: companies})
                     })
                     
                 }else{
@@ -106,7 +106,7 @@ router.get("/employees_list", (req, res) => {
                     pool.query("SELECT name FROM companies WHERE status = 'active'", (err, companies) => {
                         if(err) console.log(err)
                         
-                        res.cookie("token", token).render("employees_list", {name: result.username, companies: companies})
+                        res.cookie("token", token).render("employees_list", {admin:true, name: result.username, companies: companies})
                     })
                 
                 }else{
@@ -129,7 +129,7 @@ router.get("/companies_list", (req, res) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 15)}, process.env.secret, (err, token) => {
 
                 if(result.role == "super" || result.role == "admin"){
-                    res.cookie("token", token).render("companies_list", {name: result.username})
+                    res.cookie("token", token).render("companies_list", {admin:true, name: result.username})
                 }else{
                     res.end()
                 }
