@@ -1,5 +1,5 @@
-CREATE DATABASE ticketsystem2;
-USE ticketsystem2;
+CREATE DATABASE ticketsystem;
+USE ticketsystem;
 CREATE TABLE technicians (
 username varchar(30) NOT NULL,
 name varchar(30) NOT NULL,
