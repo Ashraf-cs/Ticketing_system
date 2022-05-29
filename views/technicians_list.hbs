@@ -1,9 +1,10 @@
 <script src="/admin.js" onload="getTechnicians()"></script>
 <div class="container mt-4">
-    <a href="/technicians/home" class="text-decoration-none fs-6">← Back to home</a><hr class="mt-2"/>
+    <a href="/technicians/home" class="text-decoration-none fs-6" style="color: #333399">← Back to home</a><hr class="mt-2"/>
     <h4 class="mt-4">Technicians</h4>
     <div class="mt-5">
-        <button class="btn btn-sm btn-primary px-3" data-bs-toggle="modal" data-bs-target="#addTechnician">Add technician</button>
+        <button class="btn btn-sm btn-light border-0" style="background-color: #333399; color:white" 
+            data-bs-toggle="modal" data-bs-target="#addTechnician">Add technician</button>
         <div class="modal fade" id="addTechnician">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -31,7 +32,8 @@
                                 {{/each}}
                             </select>
                             <div class="d-flex justify-content-end mt-3">
-                                <input type="submit" value="Add" class="btn btn-sm btn-primary" onclick="addTechnician(event)" />
+                                <input type="submit" value="Add" class="btn btn-sm btn-light border-0" 
+                                    style="background-color: #333399; color:white" onclick="addTechnician(event)" />
                             </div>
                         </form>
                     </div>
@@ -40,8 +42,8 @@
         </div>
 
         <div style="height: 320px; overflow: auto">
-            <table class="table table-light table-striped table-hover text-center mt-4" >
-                <thead class="sticky-top">
+            <table class="table table-hover text-center mt-4" style="background-color: hsl(0, 0%, 97%);">
+                <thead class="sticky-top" style="background-color: hsl(0, 0%, 96%);">
                     <tr>
                         <th>Username</th>
                         <th>Name</th>

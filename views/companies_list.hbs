@@ -1,9 +1,10 @@
 <script src="/admin.js" onload="getCompanies()"></script>
 <div class="container mt-4">
-    <a href="/technicians/home" class="text-decoration-none fs-6">← Back to home</a><hr class="mt-2"/>
+    <a href="/technicians/home" class="text-decoration-none fs-6" style="color: #333399">← Back to home</a><hr class="mt-2"/>
     <h4 class="mt-4">Companies</h4>
     <div class="mt-5">
-        <button class="btn btn-sm btn-primary " data-bs-toggle="modal" data-bs-target="#addCompanies">Add company</button>
+        <button class="btn btn-sm btn-light" style="background-color: #333399; color:white" data-bs-toggle="modal" 
+            data-bs-target="#addCompanies">Add company</button>
         <div class="modal fade" id="addCompanies">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -15,9 +16,11 @@
                         <p id="addCompMsg" class="text-danger text-center"></p>
                         <form onsubmit="preventSubmit(event)">
                             <label for="name" class="form-label mt-2 mb-1">name</label>
-                            <input id="addCompName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9-]+" title="Only characters, numbers and underscores" required />
+                            <input id="addCompName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9-]+" 
+                                title="Only characters, numbers and underscores" required />
                             <div class="d-flex justify-content-end mt-3">
-                                <input type="submit" value="Add" class="btn btn-sm btn-primary" onclick="addCompany(event)" />
+                                <input type="submit" value="Add" class="btn btn-sm btn-light" style="background-color: #333399; color:white" 
+                                    onclick="addCompany(event)" />
                             </div>
                         </form>
                     </div>
@@ -26,8 +29,8 @@
         </div>
 
         <div style="height: 320px; overflow: auto">
-            <table class="table table-light table-striped table-hover text-center mt-4" >
-                <thead class="sticky-top">
+            <table class="table table-hover text-center mt-4" style="background-color: hsl(0, 0%, 97%);">
+                <thead class="sticky-top" style="background-color: hsl(0, 0%, 96%);">
                     <tr>
                         <th>Name</th>
                         <th>Status</th>

@@ -75,13 +75,13 @@ function representTickets(data){
                         <td>${ticket.phone}</td>
                         <td>${ticket.category}</td>
                         <td class="text-start" title="${ticket.description}">${description}</td>
-                        <td class="text-success fw-bold">${ticket.status}</td>
+                        <td class="text-warning fw-bold">${ticket.status}</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td>
-                            <div >
-                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#finishTicket${ticket.id}"
+                            <div>
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#finishTicket${ticket.id}"
                                     onclick="getTicketHistory('${ticket.id}')">Finish</button>
                             </div>
                             <div class="modal fade" id="finishTicket${ticket.id}">
@@ -140,7 +140,7 @@ function representTickets(data){
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-sm btn-dark" onclick="finishTicket('${ticket.id}')">Finish</button>
+                                                        <button type="submit" class="btn btn-sm btn-warning" onclick="finishTicket('${ticket.id}')">Finish</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -189,14 +189,14 @@ function representTickets(data){
                 <td>${ticket.phone}</td>
                 <td>${ticket.category}</td>
                 <td class="text-start" title="${ticket.description}">${description}</td>
-                <td class="text-danger fw-bold">${ticket.status}</td>
+                <td class="fw-bold" style="color: #333399">${ticket.status}</td>
                 <td>${ticket["closed_at"]}</td>
                 <td>${ticket['closed_by']}</td>
                 <td title="${ticket.comment}">${comment}</td>
                 <td>
                     <div id="loadTicket${ticket.id}">
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}"
-                            onclick="getTicketHistory('${ticket.id}')">View</button>
+                        <button class="btn btn-sm btn-light border-0" data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}"
+                            onclick="getTicketHistory('${ticket.id}')" style="background-color: #333399; color:white">View</button>
                     </div>
                     <div class="modal fade" id="viewTicket${ticket.id}">
                         <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -256,19 +256,19 @@ function representTickets(data){
                                         <div class="row">
                                             <div class="col">
                                                 <label for="description" class="form-label mt-2 mb-1">Description</label>
-                                                <textarea name="description" rows="4" class="form-control form-control-sm" disabled readonly>${ticket.description}</textarea>
+                                                <textarea name="description" rows="3" class="form-control form-control-sm" disabled readonly>${ticket.description}</textarea>
                                             </div>
                                         <div>
                                         <div class="row">
                                             <div class="col">
                                                 <label for="comment" class="form-label mt-2 mb-1">Comment</label>
-                                                <textarea name="comment" rows="4" class="form-control" disabled readonly>${ticket.comment}</textarea>
+                                                <textarea name="comment" rows="3" class="form-control" disabled readonly>${ticket.comment}</textarea>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col d-flex justify-content-end">
-                                                <button type="button" data-bs-dismiss="modal" class="btn btn-sm btn-dark"  
-                                                    onclick="openTicket('${ticket.id}')">Re-Open</button>
+                                                <button type="button" data-bs-dismiss="modal" class="btn btn-sm btn-light"  
+                                                   style="background-color: #333399; color: white" onclick="openTicket('${ticket.id}')">Re-Open</button>
                                             </div>
                                         </div>
                                     </form>
@@ -629,13 +629,14 @@ function getTechnicians(){
                                                     <div class="col-12">
                                                         <input type="checkbox" class="form-check-input align-middle mb-1 me-1" onclick="enableField(event)" />
                                                         <label for="company" class="form-label mt-2 mb-1">Company</label>
-                                                        <select id="editCompany${technician.username}" name="company" class="form-select form-select-sm" style="height: 80px" multiple required disabled>
+                                                        <select id="editCompany${technician.username}" name="company" class="form-select form-select-sm" 
+                                                            style="height: 80px" multiple required disabled>
                                                             ${companies}
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-end mt-2 mb-3">
-                                                    <input type="submit" value="Edit" class="btn btn-sm btn-primary" onclick="editTechnician('${technician.username}')"/>
+                                                    <input type="submit" value="Edit" class="btn btn-sm btn-warning" onclick="editTechnician('${technician.username}')"/>
                                                 </div>
                                             </form>
                                             <hr class="my-1"/>
@@ -661,7 +662,8 @@ function getTechnicians(){
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTechnician${technician.username}">Delete</button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTechnician${technician.username}" 
+                                style="background-color: #cc0000">Delete</button>
                             <div class="modal fade" id="deleteTechnician${technician.username}">
                                 <div class="modal-dialog modal-dialog-centered" style="width: 300px">
                                     <div class="modal-content border-2 border-secondary">
@@ -672,7 +674,8 @@ function getTechnicians(){
                                             
                                             <div class="container d-flex justify-content-center mt-4">
                                                 <button  id="delete-close${technician.username}" class="btn btn-sm btn-dark me-5" data-bs-dismiss="modal">Cancel</button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteTechnician('${technician.username}')">Delete</button>
+                                                <button class="btn btn-sm btn-danger" onclick="deleteTechnician('${technician.username}')" 
+                                                    style="background-color: #cc0000">Delete</button>
                                             </div>
                                         </div>
                                     </div>
@@ -832,7 +835,7 @@ function getEmployees(){
                                                     ${companies}
                                                 </select>
                                                 <div class="d-flex justify-content-end mt-3">
-                                                    <input type="submit" value="Edit" class="btn btn-sm btn-primary" onclick="editEmployee('${employee.username}')"/>
+                                                    <input type="submit" value="Edit" class="btn btn-sm btn-warning" onclick="editEmployee('${employee.username}')"/>
                                                 </div>
                                             </form>
                                             <hr class="my-1"/>
@@ -858,7 +861,8 @@ function getEmployees(){
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEmployee${employee.username}">Delete</button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" style="background-color: #cc0000" 
+                                data-bs-target="#deleteEmployee${employee.username}">Delete</button>
                             <div class="modal fade" id="deleteEmployee${employee.username}">
                                 <div class="modal-dialog modal-dialog-centered" style="width: 300px">
                                     <div class="modal-content border-2 border-secondary">
@@ -869,7 +873,8 @@ function getEmployees(){
                                             
                                             <div class="container d-flex justify-content-center mt-4">
                                                 <button  id="delete-emp-close${employee.username}" class="btn btn-sm btn-dark me-5" data-bs-dismiss="modal">Cancel</button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteEmployee('${employee.username}')">Delete</button>
+                                                <button class="btn btn-sm btn-danger" style="background-color: #cc0000" 
+                                                    onclick="deleteEmployee('${employee.username}')">Delete</button>
                                             </div>
                                         </div>
                                     </div>
@@ -984,7 +989,8 @@ function getCompanies(){
                         <td>${company.status}</td>
                         <td></td>
                         <td>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCompany${company.name}">Delete</button>
+                            <button class="btn btn-sm btn-danger" style="background-color: #cc0000" data-bs-toggle="modal" 
+                                data-bs-target="#deleteCompany${company.name}">Delete</button>
                             <div class="modal fade" id="deleteCompany${company.name}">
                                 <div class="modal-dialog modal-dialog-centered" style="width: 300px">
                                     <div class="modal-content border-2 border-secondary">
@@ -994,7 +1000,7 @@ function getCompanies(){
                                         <div class="modal-body pt-2">
                                             <div class="container d-flex justify-content-center mt-4">
                                                 <button id="delete-Comp-close${company.name}" class="btn btn-sm btn-dark me-5" data-bs-dismiss="modal">Cancel</button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteCompany('${company.name}')">Delete</button>
+                                                <button class="btn btn-sm btn-danger" style="background-color: #cc0000" onclick="deleteCompany('${company.name}')">Delete</button>
                                             </div>
                                         </div>
                                     </div>

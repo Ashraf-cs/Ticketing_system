@@ -1,6 +1,6 @@
 <script src="/admin.js" onload="getTicketsAll()"></script>
 <div class="container-xxl mt-3">
-    <a href="/technicians/home" class="text-decoration-none fs-6 d-block">← Back to home</a>
+    <a href="/technicians/home" class="text-decoration-none fs-6 d-block" style="color: #0033cc;">← Back to home</a>
     <div class="mt-3">
         <h5 id="ticketsOf" class="d-inline"></h5> 
         <select id="ticketsYears" onchange="getTicketsAllSpecific(event.target.value)">
@@ -35,8 +35,8 @@
         
         <div class="mt-1" style=" height: 100%; overflow: auto">
             <iframe id="reportFrame" class="d-none"></iframe>
-            <table class="table table-light table-striped table-hover text-center" >
-                <thead class="sticky-top">
+            <table class="table table-hover text-center" style="background-color: hsl(0, 0%, 97%);">
+                <thead class="sticky-top" style="background-color: hsl(0, 0%, 96%);">
                     <tr>
                         <th>Number</th>
                         <th>Created at</th>
@@ -59,7 +59,7 @@
                             <input type="search" class="form-control form-control-sm" oninput="filterTickets('id',event.target.value)" />
                         </th>
                         <th>
-                            <input type="date" class="form-control form-control-sm" oninput="filterTickets('created_at',event.target.value)" />
+                            <input type="date" class="form-control form-control-sm" style="width: 130px;" oninput="filterTickets('created_at',event.target.value)" />
                         </th>
                         
                         <th>
@@ -94,14 +94,14 @@
                             </select>
                         </th>
                         <th>
-                            <input type="date" class="form-control form-control-sm" oninput="filterTickets('closed_at',event.target.value)" />
+                            <input type="date" class="form-control form-control-sm" style="width: 130px;" oninput="filterTickets('closed_at',event.target.value)" />
                         </th>
                         <th>
                             <input type="search" class="form-control form-control-sm" oninput="filterTickets('closed_by',event.target.value)" />
                         </th>
                         <th></th>
                         <th class="px-0">
-                            <button class="btn btn-sm btn-warning mx-0" data-bs-toggle="collapse" data-bs-target="#customFilter">Custom</button>
+                            <button class="btn btn-sm btn-secondary mx-0" data-bs-toggle="collapse" data-bs-target="#customFilter">Custom</button>
                         </th>
                         
                     </tr>
@@ -114,9 +114,9 @@
                             <th></th>
                             <th class="fw-normal pt-0">
                                 From
-                                <input id="cfilterCreatedAtFrom" type="date" class="form-control form-control-sm" />
+                                <input id="cfilterCreatedAtFrom" type="date" style="width: 130px;" class="form-control form-control-sm" />
                                 To
-                                <input id="cfilterCreatedAtTo" type="date" class="form-control form-control-sm" />
+                                <input id="cfilterCreatedAtTo" type="date" style="width: 130px;" class="form-control form-control-sm" />
                             </th>
                             <th>
                                 <input id="cfilterTechnician" type="search" class="form-control form-control-sm" />
@@ -151,16 +151,17 @@
                             </th>
                             <th class="fw-normal pt-0">
                                 From
-                                <input id="cfilterClosedAtFrom" type="date" class="form-control form-control-sm"/>
+                                <input id="cfilterClosedAtFrom" type="date" style="width: 130px;" class="form-control form-control-sm"/>
                                 To
-                                <input id="cfilterClosedAtTo" type="date" class="form-control form-control-sm"/>
+                                <input id="cfilterClosedAtTo" type="date" style="width: 130px;" class="form-control form-control-sm"/>
                             </th>
                             <th>
                                 <input id="cfilterClosedBy" type="search" class="form-control form-control-sm" />
                             </th>
                             <th>
                                 <button type="button" onclick="customFilterTickets()" class="btn btn-sm btn-success">Filter</button>
-                                <button type="button" onclick="getTicketReport()" class="btn btn-sm btn-primary mt-3">Save</button>
+                                <button type="button" onclick="getTicketReport()" class="btn btn-sm btn-light border-0 mt-3" 
+                                    style="background-color: #333399; color:white">Save</button>
                             </th>
                             <th>
                                 <button type="reset" onclick="representTickets(tickets)" class="btn btn-sm btn-secondary">Reset</button>

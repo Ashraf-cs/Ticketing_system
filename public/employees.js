@@ -22,7 +22,7 @@ function getTickets(){
                             <td>${ticket.phone}</td>
                             <td>${ticket.category}</td>
                             <td class="text-start">${description}</td>
-                            <td class="text-success fw-bold">${ticket.status}</td>
+                            <td class="text-warning fw-bold">${ticket.status}</td>
                             <td></td>
                             <td></td>
                         </tr>\n
@@ -37,11 +37,12 @@ function getTickets(){
                             <td>${ticket.phone}</td>
                             <td>${ticket.category}</td>
                             <td class="text-start">${description}</td>
-                            <td class="text-danger fw-bold">${ticket.status}</td>
+                            <td class="fw-bold" style="color: #333399">${ticket.status}</td>
                             <td>${ticket['closed_at']}</td>
                             <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#show${ticket.id}">Show</button>
-                        <div class="modal fade" id="show${ticket.id}">
+                        <button class="btn btn-sm btn-light border-0" style="background-color: #333399; color:white" 
+                            data-bs-toggle="modal" data-bs-target="#View${ticket.id}">View</button>
+                        <div class="modal fade" id="View${ticket.id}">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header" style="height: 45px">

@@ -6,23 +6,23 @@
     </head>
     <body onload="window.print()">
         <div class="container-xxl mt-3">
-    <h5 class="">Tickets from {{date1}} to {{date2}}</h5> 
+    <h5>Tickets from <span style="color: #333399">{{date1}} to {{date2}}</span></h5> 
     <div class="mt-4 card p-2">
         <div class="row">
             <div class="col">
-                <div class="card text-center fs-4 p-2 border border-dark">
+                <div class="card text-center fs-4 p-2" style="border: 1.5px solid #404040">
                     <p>Tickets</p>
                     <span>{{allTotal}}</span>
                 </div>
             </div>
             <div class="col">
-                <div class="card text-center fs-4 p-2 border border-dark">
+                <div class="card text-center fs-4 p-2 " style="border: 1.5px solid #e6b800">
                     <p>Opened tickets</p>
                     <span>{{openedTotal}}</span>
                 </div>
             </div>
             <div class="col">
-                <div class="card text-center fs-4 p-2 border border-dark">
+                <div class="card text-center fs-4 p-2 " style="border: 1.5px solid #333399">
                     <p>Closed tickets</p>
                     <span>{{closedTotal}}</span>
                 </div>
@@ -34,7 +34,7 @@
     <div class="mt-3">
         
         <div class="mt-1" style=" height: 100%; overflow: auto">
-            <table class="table table-light table-striped table-hover text-center" >
+            <table class="table table-hover text-center" style="background-color: hsl(0, 0%, 97%);">
                 <thead class="sticky-top">
                     <tr>
                         <th>Number</th>

@@ -23,23 +23,23 @@ function getTickets(){
                             <td>${ticket.phone}</td>
                             <td>${ticket.category}</td>
                             <td class="text-start">${description}</td>
-                            <td class="text-success fw-bold">${ticket.status}</td>
+                            <td class="text-warning fw-bold">${ticket.status}</td>
                             <td>${ticket["closed_at"]}</td>
                             <td></td>
                             <td></td>
                             <td>
                                 <div id="loadTicket${ticket.id}">
-                                    <button value="Finish" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}">Finish</button>
+                                    <button value="Finish" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}">Finish</button>
                                 </div>
                                 <div class="modal fade" id="viewTicket${ticket.id}">
-                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg modal-scrollable">
                                         <div class="modal-content">
                                             <div class="modal-header" style="height: 45px">
                                                 <h4 class="modal-title">Ticket info</h4>
                                                 <button id="ticket-close${ticket.id}" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             
-                                            <div class="modal-body text-start">
+                                            <div class="modal-body text-start pt-0">
                                                 <form onsubmit="preventSubmit(event)">
                                                     <div class="row g-1">
                                                         <div class="col">
@@ -79,7 +79,7 @@ function getTickets(){
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button type="submit" class="btn btn-sm btn-dark" onclick="finishTicket('${ticket.id}')">Finish</button>
+                                                            <button type="submit" class="btn btn-sm btn-warning" onclick="finishTicket('${ticket.id}')">Finish</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -102,12 +102,13 @@ function getTickets(){
                             <td>${ticket.phone}</td>
                             <td>${ticket.category}</td>
                             <td class="text-start">${description}</td>
-                            <td class="text-danger fw-bold">${ticket.status}</td>
+                            <td class="fw-bold" style="color: #333399">${ticket.status}</td>
                             <td>${ticket['closed_at']}</td>
                             <td>${ticket['closed_by']}</td>
                             <td class="text-start">${comment}</td>
                             <td>
-                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}">View</button>
+                                <button class="btn btn-sm btn-light border-0" style="background-color: #333399; color:white" 
+                                    data-bs-toggle="modal" data-bs-target="#viewTicket${ticket.id}">View</button>
                                 <div class="modal fade" id="viewTicket${ticket.id}">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">

@@ -1,9 +1,10 @@
 <script src="/admin.js" onload="getEmployees()"></script>
 <div class="container mt-4">
-    <a href="/technicians/home" class="text-decoration-none fs-6">← Back to home</a><hr class="mt-2"/>
+    <a href="/technicians/home" class="text-decoration-none fs-6" style="color: #333399">← Back to home</a><hr class="mt-2"/>
     <h4 class="mt-4">Employees</h4>
     <div class="mt-5">
-        <button class="btn btn-sm btn-primary " data-bs-toggle="modal" data-bs-target="#addEmployees">Add employee</button>
+        <button class="btn btn-sm btn-light border-0" data-bs-toggle="modal" style="background-color: #333399; color:white" 
+            data-bs-target="#addEmployees">Add employee</button>
         <div class="modal fade" id="addEmployees">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -15,9 +16,11 @@
                         <p id="addEmpMsg" class="text-danger text-center"></p>
                         <form onsubmit="preventSubmit(event)">
                             <label for="username" class="form-label mb-1">Username</label>
-                            <input id="addEmpUsername" name="username" type="text"  class="form-control form-control-sm" pattern="[A-z0-9]+" title="Only characters, numbers and underscores" required />
+                            <input id="addEmpUsername" name="username" type="text"  class="form-control form-control-sm" pattern="[A-z0-9]+" 
+                                title="Only characters, numbers and underscores" required />
                             <label for="name" class="form-label mt-2 mb-1">name</label>
-                            <input id="addEmpName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9 ]+" title="Only characters, numbers and underscores" required />
+                            <input id="addEmpName" name="name" type="text" class="form-control form-control-sm" pattern="[A-z0-9 ]+" 
+                                title="Only characters, numbers and underscores" required />
                             <label for="company" class="form-label mt-2 mb-1">Company</label>
                             <select id="addEmpCompany" name="company" class="form-select form-select-sm" required>
                                 <option selected disabled></option>
@@ -26,7 +29,8 @@
                                 {{/each}}
                             </select>
                             <div class="d-flex justify-content-end mt-3">
-                                <input type="submit" value="Add" class="btn btn-sm btn-primary" onclick="addEmployee(event)" />
+                                <input type="submit" value="Add" class="btn btn-sm btn-light border-0" 
+                                    style="background-color: #333399; color:white" onclick="addEmployee(event)" />
                             </div>
                         </form>
                     </div>
@@ -35,8 +39,8 @@
         </div>
 
         <div style="height: 320px; overflow: auto">
-            <table class="table table-light table-striped table-hover text-center mt-4" >
-                <thead class="sticky-top">
+            <table class="table table-hover text-center mt-4" style="background-color: hsl(0, 0%, 97%);">
+                <thead class="sticky-top" style="background-color: hsl(0, 0%, 96%);">
                     <tr>
                         <th>Username</th>
                         <th>Name</th>
