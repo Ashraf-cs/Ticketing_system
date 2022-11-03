@@ -1,0 +1,6 @@
+{
+  "short_name": "Ticketing system",
+  "name": "Ticketing system",
+  "start_url": ".",
+  "display": "standalone"
+}
