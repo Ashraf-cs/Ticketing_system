@@ -52,11 +52,12 @@ function EmployeesList(){
         })
     },[state, auth])
 
-
+    
     // Adding an employee
     function addEmployee(e){
         if(e.target.form.checkValidity()){
-            axios.post('http://localhost:5200/users', {username: username, name: name, dept: department, category: 'employees'})
+            axios.post('http://localhost:5200/users', {username: username, name: name, category: 'employees',
+            privilege: 'none', dept: department, token: localStorage.getItem('token')})
             .then(res => {
                 if(res.data.status){
                     document.getElementById("add-emp-close").click()
