@@ -1,3 +1,6 @@
+
+<img src="https://badgen.net/badge/release/v0.1.1" alt="v0.1.1"/>
+
 <h2>Ticketing_system</h2>
 <h4><i>Technical support ticketing system</i></h4>
 
@@ -41,4 +44,6 @@
   <div>
     <i>* You can change the password manually and save it as hashed string using bcrypt package in Node.js REPL session (command line)</i>
   </div>
+    
+    
 
