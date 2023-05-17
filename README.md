@@ -1,5 +1,5 @@
 
-<img src="https://badgen.net/badge/release/v0.1.1" alt="v0.1.1"/>
+<img src="https://badgen.net/badge/release/v0.1.2" alt="v0.1.2"/>
 
 <h2>Ticketing_system</h2>
 <h4><i>Technical support ticketing system</i></h4>
