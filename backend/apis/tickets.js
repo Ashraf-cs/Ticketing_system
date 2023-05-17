@@ -109,7 +109,7 @@ router.post("/get", (req, res) => {
                 WHERE employee = "${result.username}"`, (err, tickets) => {
                 if(err) console.log(err)
 
-                pool.query(`SELECT department FROM employees WHERE username = "${result.username}"`, (err, dept) => {
+                pool.query(`SELECT department FROM users WHERE username = "${result.username}"`, (err, dept) => {
                     if(err) console.log(err)
 
                     res.json({auth: true, newToken: req.body.newToken, tickets: tickets,username: result.username, dept: dept[0].department})
