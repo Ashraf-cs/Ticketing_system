@@ -91,11 +91,11 @@ function Technicians(){
                                             <tr key={index}>
                                                 <td>{ticket.id}</td>
                                                 <td>{ticket['created_at']}</td>
-                                                <td>{ticket.dept}</td>
+                                                <td>{ticket.department}</td>
                                                 <td>{ticket.employee}</td>
                                                 <td>{ticket.phone}</td>
                                                 <td>{ticket.category}</td>
-                                                <td className="text-start">{description}</td>
+                                                <td>{description}</td>
                                                 <td className="text-warning fw-bold">{ticket.status}</td>
                                                 <td>{ticket['closed_at']}</td>
                                                 <td></td>
@@ -128,11 +128,11 @@ function Technicians(){
                                                                             </div>
                                                                             <div className="col">
                                                                                 <div className=" d-flex justify-content-start">
-                                                                                    <label htmlFor="timestamp" 
+                                                                                    <label htmlFor="created_at" 
                                                                                         className="form-label mt-2 mb-1">
                                                                                         {content['createdAt']}</label>
                                                                                 </div>
-                                                                                <input id="timestamp" value={`${ticket.timestamp}`} 
+                                                                                <input id="created_at" value={`${ticket.created_at}`} 
                                                                                     className="form-control form-control-sm" disabled />
                                                                             </div>
                                                                             <div className="col">
@@ -152,7 +152,7 @@ function Technicians(){
                                                                                         className="form-label mt-2 mb-1">
                                                                                         {content['dept']}</label>
                                                                                 </div>
-                                                                                <input id="dept" value={`${ticket.dept}`} 
+                                                                                <input id="dept" value={`${ticket.department}`} 
                                                                                     className="form-control form-control-sm" disabled />
                                                                             </div>
                                                                             <div className="col">
@@ -213,11 +213,11 @@ function Technicians(){
                                             <tr key={index}>
                                                 <td>{ticket.id}</td>
                                                 <td>{ticket['created_at']}</td>
-                                                <td>{ticket.dept}</td>
+                                                <td>{ticket.department}</td>
                                                 <td>{ticket.employee}</td>
                                                 <td>{ticket.phone}</td>
                                                 <td>{ticket.category}</td>
-                                                <td className="text-start">{description}</td>
+                                                <td>{description}</td>
                                                 <td className="fw-bold" style={{color: "#333399"}}>{ticket.status}</td>
                                                 <td>{ticket['closed_at']}</td>
                                                 <td>{ticket['closed_by']}</td>
@@ -250,11 +250,11 @@ function Technicians(){
                                                                             </div>
                                                                             <div className="col">
                                                                                 <div className=" d-flex justify-content-start">
-                                                                                    <label htmlFor="timestamp" 
+                                                                                    <label htmlFor="created_at" 
                                                                                         className="form-label mt-2 mb-1">
                                                                                         {content['createdAt']}</label>
                                                                                 </div>
-                                                                                <input id="timestamp" value={`${ticket['created_at']}`} 
+                                                                                <input id="created_at" value={`${ticket['created_at']}`} 
                                                                                     className="form-control form-control-sm" disabled />
                                                                             </div>
                                                                             <div className="col">
@@ -274,7 +274,7 @@ function Technicians(){
                                                                                         className="form-label mt-2 mb-1">
                                                                                         {content['dept']}</label>
                                                                                 </div>
-                                                                                <input value={`${ticket.dept}`} 
+                                                                                <input value={`${ticket.department}`} 
                                                                                     className="form-control form-control-sm" disabled />
                                                                             </div>
                                                                             <div className="col">

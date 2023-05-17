@@ -513,7 +513,7 @@ function Admin(){
                                                                                             className="form-label mt-2 mb-1">
                                                                                             {content['dept']}</label>
                                                                                     </div>
-                                                                                    <input name="dept" value={`${ticket.dept}`} 
+                                                                                    <input name="dept" value={`${ticket.department}`} 
                                                                                     className="form-control form-control-sm" disabled />
                                                                                 </div>
                                                                                 <div className="col">
@@ -619,7 +619,7 @@ function Admin(){
                                                     <td>{ticket.id}</td>
                                                     <td>{ticket['created_at']}</td>
                                                     <td>{ticket.technician}</td>
-                                                    <td>{ticket.dept}</td>
+                                                    <td>{ticket.department}</td>
                                                     <td>{ticket.employee}</td>
                                                     <td>{ticket.phone}</td>
                                                     <td>{ticket.category}</td>
@@ -702,7 +702,7 @@ function Admin(){
                                                                                             className="form-label mt-2 mb-1">
                                                                                             {content['dept']}</label>
                                                                                     </div>
-                                                                                    <input name="dept" value={`${ticket.dept}`} 
+                                                                                    <input name="dept" value={`${ticket.department}`} 
                                                                                         className="form-control form-control-sm" disabled/>
                                                                                 </div>
                                                                                 <div className="col">
